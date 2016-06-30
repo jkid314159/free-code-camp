@@ -1,0 +1,33 @@
+/*  June 2016
+**  Author: Alex Cholakis (@jkid314159)
+**  File Name: Search and Replace
+**
+**  Exercise completed for Free Code Camp:
+**  Perform a search and replace on the sentence using the arguments
+**  provided and return the new sentence.  Preserve the case of the
+**  original word when replacing it.  
+**
+**  Comment:  Easy
+*/
+
+function myReplace(str, before, after) {
+	
+	var before_firstl = before[0];
+	var before_up = before_firstl.toUpperCase();
+	
+	if ( before_firstl == before_up ) {
+		var arr = after.split('');
+		arr[0] = arr[0].toUpperCase();
+		after = arr.join('');
+		str = str.replace( before, after );
+		return str;
+		
+	} else {
+		str = str.replace( before, after );
+		return str;
+		
+	}
+	
+}
+
+myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");
