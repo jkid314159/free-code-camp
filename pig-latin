@@ -1,0 +1,56 @@
+/*  July 2016
+**  Author: Alex Cholakis (@jkid314159)
+**  File Name: pig-latin
+**
+**  Exercise completed for Free Code Camp:
+**  Translate provided string to pig latin.  
+**  Move first consonant group to end of word, add "ay".
+**  If a word begins with a vowel, add "way" to end.
+**
+**  Comment:
+*/
+
+function translatePigLatin(str) {
+	var arr;
+	var arrC
+	var flag = true;
+	var letter;
+	var index = 0;
+	
+	arr = str.split("");
+	
+	
+	while ( flag ) {
+		
+		letter = str.substr(index,1);
+		
+		switch (letter) {
+			case "a":
+			case "e":	
+			case "i":
+			case "o":
+			case "u":
+				flag = false;
+				break;
+			default:
+				arr.push(letter);
+				flag = true;
+				break;
+		}//switch-end
+		
+		index++;
+	
+	}//while
+	
+	
+	if (letter == arr[0]) {
+		str = arr.join('') + "way";
+	} else {
+		arr = arr.slice(index-1);
+		str = arr.join('') + "ay";
+	}
+
+	return str;
+}
+
+translatePigLatin("glove");
