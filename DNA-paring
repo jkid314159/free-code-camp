@@ -1,0 +1,58 @@
+/*
+**  Author: Alex Cholakis (@jkid314159)
+**  File Name: DNA-pairing
+**
+**  Exercise completed for Free Code Camp:
+**  Make obj to push elements as separate arrays
+**	Array.prototype.push.apply() only combines elements
+**
+**  Comment:  Tricky
+*/
+
+function pairElement(str) {
+	var arrIn;
+	var arrOut = [];
+	var letter = "";
+	
+	var obj = {
+		length: 0,
+
+    	addElem: function addElem (elem) {
+        	// obj.length is automatically incremented every time an element is added.
+        	[].push.call(this, elem);
+    	}
+    };
+	
+	arrIn = str.split('');
+	
+	for ( i = 0; i < arrIn.length; i++ ) {
+		
+		var arrTemp = [];
+		letter = arrIn[i];
+		arrTemp.push(letter);
+		
+		switch ( letter ) {
+			case "A":
+				letter = "T";
+				break;
+			case "C":
+				letter = "G";
+				break;
+			case "G":
+				letter = "C";
+				break;
+			case "T":
+				letter = "A";
+				break;
+		}//switch-end
+		
+		arrTemp.push(letter);
+		obj.addElem(arrTemp);
+		
+	}
+	
+	
+  return Array.from(obj);
+}
+
+pairElement("ATCGA");
