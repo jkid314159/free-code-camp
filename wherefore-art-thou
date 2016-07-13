@@ -1,0 +1,66 @@
+/*  June 2016
+**  Author: Alex Cholakis (@jkid314159)
+**  File Name: wherefore-art-thou
+**
+**  Exercise completed for Free Code Camp:
+**  Make a function that looks through an array of objects by (first
+**  argument) and returns an array of all objects that have matching
+**  property and value pairs (second argument).  Each property and value
+**  pair of the source object has to be present in the object from the
+**  collection if it is to be included in the returned array.
+**
+**  Comment:  Realized js does not have classes. OMG!
+*/
+
+
+function whatIsInAName(collection, source) {
+  // What's in a name?
+  var arr = [];
+  // Only change code below this line
+  
+  //Returns an array of source Properties
+  var source_k = Object.keys( source );
+  //Array of Object's Properties
+  var collection_k = [];
+  
+  
+  
+  //Iterate over each Object in collection
+  for ( var obj = 0; obj < collection.length; obj++ ) {
+  	
+  	//Get array of Properties of the Object, ie: ['a','b']
+  	collection_k = Object.keys( collection[obj] );
+  	
+  	//Iterate over Object's Keys
+  	for ( var okey = 0; okey < collection_k.length; okey++ ) {
+  	  	
+  	  	//Iterate over Input Object Keys
+  	  	for ( var ikey = 0; ikey < source_k.length; ikey++ ) {
+
+  	  		//Property values
+  	  		var prop1 = collection[obj][source_k[ikey]];
+  	  		var prop2 = source[source_k[ikey]];
+  	  		
+  	  		if ( collection[obj].hasOwnProperty( source_k[ikey]) && Object.is(prop1,prop2) ) {
+  	  			
+  	  			if ( arr.indexOf( collection[obj]) == -1 ) {
+  	  				arr.push(collection[obj] );
+  	  			} 
+  	  		} else {
+  	  			 arr.pop();
+  	  			
+  	  		} //if_end 
+  	  		
+  		}//for_ikey_end
+  	
+  	}//for_okey_end
+
+  }//for_obj_end
+
+ // Only change code above this line
+  return arr;
+}
+
+
+
+whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
