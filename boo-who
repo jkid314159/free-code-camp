@@ -1,0 +1,32 @@
+/*
+**  Author:     Alex Cholakis (@jkid314159)
+**  File Name:  boo-who
+**  Date:       July, 2016
+**
+**  Exercise completed for Free Code Camp:
+**	Check if a value is classified as a boolean
+**  primitive.  Return true or false.
+**
+**  Comment: 20-minutes to complete 
+*/
+
+
+function booWho(bool) {
+  // What is the new fad diet for ghost developers? The Boolean.
+  
+  if ( bool === null || bool === undefined ) {
+  	return false;
+  }
+  
+  //get property valueOf()
+  var myVar = bool.valueOf();
+  
+  if ( myVar === true || myVar === false ) {
+  	return true;
+  } else {
+  	return false;
+  }
+  
+}//booWho-end
+
+booWho(undefined);
