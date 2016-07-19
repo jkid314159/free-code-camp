@@ -1,0 +1,52 @@
+/*
+**  Author:     Alex Cholakis (@jkid314159)
+**  File Name:  sorted-union
+**  Date:       July, 2016
+**
+**  Write a function that takes two or more arrays 
+**  and returns a new array of unique values in the
+**  order of the original provided arrays.
+**
+**  Comment:
+*/
+
+function uniteUnique(arr) {
+	
+	var param = [];
+	var arrOut = [0];
+	var flattened;
+	var test;
+	var boolean;
+	
+	//transform arguements, array-like, to array
+	param = Array.from(arguments);
+	
+	
+	//transform into one-dimensional array
+	flattened = param.reduce(function(a,b) {
+		return a.concat(b);
+	}, []);
+	
+	for ( i = 0; i < flattened.length; i++ ) {
+		boolean = false;
+		test = flattened[i];
+		
+		for ( j = 0; j < arrOut.length; j++ ) {
+			//if arrOut has value
+			if ( arrOut[j] == test ) {
+				boolean = true;
+			}
+		}//for-inner end
+		
+		if ( boolean === false ) {
+			arrOut.push(test);
+		}
+	}//for-outter end
+	
+	//pop off first value of 0
+	arrOut.shift();
+	
+  return arrOut;
+}
+
+uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
