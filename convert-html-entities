@@ -1,0 +1,48 @@
+/*
+**  Author:     Alex Cholakis (@jkid314159)
+**  File Name:  convert-html-entities
+**  Date:       July, 2016
+**
+**  Exercise completed for Free Code Camp:
+**  Convert &, <, >, " (double quote), and ' (apostrophe),
+**  in a string to their corresponding HTML entities.
+**
+**  Comment:
+*/
+
+function convertHTML(str) {
+	var strOut;
+	
+	function replacer(match){
+		
+		switch (match) {
+			case "&":
+				match = "&amp;";
+				break;
+			case "<":
+				match = "&lt;";
+				break;
+			case ">":
+				match = "&gt;";
+				break;
+			case '"':
+				match = "&quot;";
+				break;
+			case "'":
+				match = "&apos;";
+				break;
+		}
+		
+		return match;
+		
+	}//replacer-end
+	
+	strOut = str.replace(/<|>|&|"|'/g, replacer);
+	
+
+	
+  return strOut;
+}
+
+convertHTML("Shindler's List")
+
