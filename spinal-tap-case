@@ -1,0 +1,35 @@
+/*
+ * **  Author:     Alex Cholakis (@jkid314159)
+**  File Name:  spinal-tap-case
+**  Date:       July, 2016
+**
+
+**  Exercise completed for Free Code Camp
+**  Convert a string to spinal case. 
+**  Spinal case is all-lowercase-words-joined-by-dashes.
+**
+**  Comment:
+*/
+
+
+function spinalCase(str) {
+  // "It's such a fine line between stupid, and clever."
+  // --David St. Hubbins
+  
+	//find uc next to lc and add space before
+	str = str.replace(/([a-z])([A-Z])/g, '$1 $2');
+	
+	//replace underscore
+	str = str.replace(/_/g, " ");
+	
+	//replace space with hyphen
+	str = str.replace(/\s/g, "-" );
+
+	//remove comma
+	str = str.replace(/,/g, "" );
+
+	str = str.toLowerCase();
+  
+  
+  return str;
+}
