@@ -1,0 +1,51 @@
+/*
+**  Author:     Alex Cholakis (@jkid314159)
+**  File Name:  sum-all-odd-fibonacci-numbers
+**  Date:       July, 2016
+**
+
+**  Exercise completed for Free Code Camp
+**  Given a positive integer num, return the sum of
+**  all odd Fibonacci numbers that are less than or
+**  equal to num.
+**  Comment:
+*/
+
+function sumFibs(num) {
+	var numOut;
+	var fibArr  = [1,1];
+	var arrOdd = [1,1];
+	var arrLen;
+	var sum = 2;
+	
+	for ( i = 0; i < num; i++ ) {
+
+		arrLen = fibArr.length;
+		
+		//special case number = 1
+		if ( num == 1 ) {
+			return 2;
+		}
+
+		if ( i > 1 ){
+			//create array of fibonacci sequence
+			numOut = fibArr[arrLen-1] + fibArr[arrLen-2];
+	  		fibArr.push(numOut);
+
+	  		//test for odd number
+	  		odd = numOut % 2;
+	  		if ( odd > 0 && numOut <= num ) {
+	  			//create array of fibonacci sequence odd numbers
+	  			arrOdd.push(numOut);
+	  			//sum of odd numbers
+	  			sum += numOut;
+	  		}
+	  	
+	  	}//if-outer-end
+		
+	}//for-end
+	
+  return sum;
+}
+
+sumFibs(1000);
