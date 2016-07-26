@@ -1,0 +1,53 @@
+/*
+**  Author:     Alex Cholakis (@jkid314159)
+**  File Name:  sum-all-primes
+**  Date:       July, 2016
+**
+**
+**  Exercise completed for Free Code Camp
+**  Sum all the prime numbers up to and including the provided number.
+**  Program uses Sieve of Erathosthenes.
+**
+**  Comment:
+*/
+
+function sumPrimes(num) {
+	var arrNum = [];
+	var sqrt;
+	var primeNum;
+	var sumOut =0;
+	
+	
+
+	//create array from 2 until the value, assign each true
+	for ( i = 2; i <= num; i++) {
+		arrNum[i] = true;
+	}
+	
+	//represent limit to loop
+	sqrt = Math.sqrt(num);
+	
+	//use numbers up to square root value of input number
+	for ( j = 0; j < sqrt; j++ ){
+		//if value is true means prime number
+		if ( arrNum[j] === true ){
+			primeNum = j;
+			//Search for multiples of prime, ie. 2p,3p,4p, etc
+			for ( var k = primeNum * primeNum; k <= num; k = (k + primeNum) ) {
+				arrNum[k] = false;
+			}//for-inner-end
+		}
+	}//for-outer-end
+	
+	
+	//true values are primes - then sum 
+	for ( var m = 2; m < arrNum.length; m++ ) {
+		if ( arrNum[m] === true ) {
+			sumOut += m;
+		}
+	}
+
+  return sumOut;
+}
+
+sumPrimes(10);
