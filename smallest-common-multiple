@@ -1,0 +1,66 @@
+/*
+**  Author:     Alex Cholakis (@jkid314159)
+**  File Name:  smallest-common-multiple
+**  Date:       July, 2016
+**
+
+**  Exercise completed for Free Code Camp
+**  Find the smallest common multiple of the provided
+**  parameters that can be evenly divided by both, as 
+**  well as by all sequenctial numbers in the range
+**  between these parameters.
+**
+**  Comment: Error:  Potential infinite loop at line
+**  after while-statement.  To disable loop 
+**  protection, write: "// noprotect"
+**  as the first line.  Beware that if you do 
+**  have an infinite loop in your code this will
+**  crash your browser.
+*/
+
+function smallestCommons(arr) {
+	var arrRange = [];
+	var flag     = false;
+	var max      = 0;
+	var min      = 0;
+	var dividend = 0;
+	var counter;
+	
+	//Find minimum and maxium of values
+	if ( arr[0] > arr[1] ) {
+		max = arr[0];
+		min = arr[1];
+	} else {
+		max = arr[1];
+		min = arr[0];
+	}
+	
+	//Range of values into array
+	for ( r = min; r <= max; r++ ) {
+		arrRange.push(r);
+	}
+
+	dividend = max;
+	
+	while ( !flag ) {
+		// noprotect
+		counter = 0;
+		
+		for ( j = 0; j < arrRange.length; j++ ) {
+			if ( dividend % arrRange[j] === 0 ) {
+				counter++;
+			}
+			if ( counter === arrRange.length ) {
+				flag = true;
+			}
+		}//for-end
+		
+		//Increase by multiple of max
+		dividend += max;
+	}//while-end
+
+return ( dividend - max ); 
+
+}//smallestCommons()-end
+
+smallestCommons([23,18]);
