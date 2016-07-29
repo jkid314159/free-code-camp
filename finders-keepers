@@ -1,0 +1,25 @@
+/*
+**  Author:     Alex Cholakis (@jkid314159)
+**  File Name:  finders-keepers
+**  Date:       July, 2016
+**
+
+**  Exercise completed for Free Code Camp
+**  Create a function that looks through an array 
+**  (first argument) and returns the first 
+**  element in the array that passes a truth test
+**  (second argument).
+**
+**  Comment: 15-minutes to complete.
+*/
+
+function findElement(arr, func) {
+  var num = 0;
+  
+  var arrOut = arr.filter(func);
+  
+  return arrOut[0];
+  
+}
+
+findElement([1, 2, 3, 4], function(num){ return num % 2 === 0; });
