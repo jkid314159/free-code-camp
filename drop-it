@@ -1,0 +1,53 @@
+/*
+**  Author:     Alex Cholakis (@jkid314159)
+**  File Name:  drop-it
+**  Date:       July, 2016
+**
+
+**  Exercise completed for Free Code Camp
+**
+**  Drop the elements of an array (first argument),
+**  starting from the front, until the predicate
+**  (second argument) returns true.
+**
+**  The second argument, func, is a function 
+**  you'll use to test the first elements of the
+**  array to decide if you should drop it or not.
+**
+**  Return the rest of the array, otherwise return 
+**  an empty array.
+**
+**  Comment:
+**
+*/
+
+function dropElements(arr, func) {
+  var n = 0;
+  var arrFilter;
+  var arrOut;
+  var indexBegin;
+  var indexEnd;
+  
+  
+  arrFilter = arr.filter(func);
+  
+  indexBegin = arr.indexOf(arrFilter[0]);
+  
+  //arrFilter = [] - indexBegin === -1 
+  if ( indexBegin < 0 ) {
+  	
+  	return arrFilter;
+  	
+  } else {
+  	
+	  indexEnd = arr.length;
+ 
+	  arrOut = arr.slice(indexBegin, indexEnd);
+ 
+	  return arrOut;
+  }
+  
+
+}//dropElements()-end
+
+dropElements([1, 2, 3, 4], function(n) {return n > 5;})
