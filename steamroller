@@ -1,0 +1,40 @@
+/*
+**  Author:     Alex Cholakis (@jkid314159)
+**  File Name:  steamroller
+**  Date:       July, 2016
+**
+
+**  Exercise completed for Free Code Camp
+**  Flatten a nested array. You must account for 
+**  varying levels of nesting.
+**  
+**  Comment:  Program works recursively. 
+**  ie:  input is ( [1, [2], [3, [ [ 4 ] ] ] ] ):
+**  Step 1: @index1 = [2]
+**  Step 2: for-loop test,
+**			call streamrollArray([2]) - passes array
+**  Step 3: @index0 = 2
+**  Step 4: for-loop test will push element onto arrOut
+**  Step 5: returns to original array,
+**			@index2 = [ 3, [[4]] ]
+**
+*/
+
+function steamrollArray(arr) {
+  // I'm a steamroller, baby
+  var arrOut = [];
+  var flag = false;
+  var flattenArray;
+
+  for ( var i = 0; i < arr.length; i++ ) {
+  	if ( Array.isArray( arr[i] ) ) {
+  		arrOut = arrOut.concat( steamrollArray( arr[i] ) );
+  	} else {
+  		arrOut.push( arr[i] );
+  	}
+  }//for-end
+  return arrOut;
+  
+}//streamrollArray()-end
+
+steamrollArray([[["a"]], [["b"]]]);
