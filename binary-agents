@@ -1,0 +1,42 @@
+/*
+**  Author:     Alex Cholakis (@jkid314159)
+**  File Name:  binary-agents
+**  Date:       August, 2016
+**
+
+**  Exercise completed for Free Code Camp
+**  
+**  Return an English translated sentence of 
+**  the passed binary string.
+**  The binary string will be space separated.
+**  
+**  Comment:  'Aren\'t bonfires fun!?' 
+**	Could not remove backslash but FCC accept.
+**
+*/
+
+function binaryAgent(str) {
+	var int    = 0;
+	var arrIn  = [];
+	var arrOut = [];
+	var ch;
+	var strOut;
+	
+	//input to array
+	arrIn = str.split(" ");
+	
+	for ( var i = 0; i < arrIn.length; i++ ) {
+		//binary to decimal
+		int = parseInt( arrIn[i], 2 );
+		//number to character
+		ch = String.fromCharCode(int);
+		arrOut.push(ch);
+	}
+	
+	strOut = arrOut.join('');
+	
+	return strOut;  
+
+}//binaryAgent()-end
+
+binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");
