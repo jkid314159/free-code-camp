@@ -1,0 +1,44 @@
+/*
+**  Author:     Alex Cholakis (@jkid314159)
+**  File Name:  arguements-optional
+**  Date:       September, 2016
+**
+
+**  Exercise completed for Free Code Camp
+**
+**  Create a function that sums two arguments together.  
+**  If only one argument is provided, then return a 
+**  function that expects one argument and returns the sum.
+**
+**  Comment:
+*/
+
+
+function addTogether(numA) {
+	var sum = 0;
+	
+	//Type check input 
+	if ( typeof numA == 'string' || typeof numA == 'object' )  {
+		return undefined;
+	} else if ( arguments.length === 2 ) {
+		//Type check both arguments
+		if ( typeof arguments[0] == 'string' || typeof arguments[0] == 'object' || typeof arguments[1] == 'string' || typeof arguments[1] == 'object' ) {
+					return undefined;
+		} else {
+			return arguments[0] + arguments[1];
+		}
+	//Only one argument	
+	} else {
+		return function(numB) {
+			//Type check input
+			if ( typeof numB == 'string' || typeof numB == 'object' )  {
+				return undefined;
+			} else {
+				return numA + numB;
+			}
+		};//function()-end
+	}//if-else-end
+
+}//addTogether-end
+
+addTogether(2,"3");
