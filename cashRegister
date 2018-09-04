@@ -1,0 +1,99 @@
+console.clear();
+
+function checkCashRegister(price, cash, cid) {
+	var total = 0.0;
+  var arrTemp = [];
+  var change = cash - price;
+  console.log("changeStart: ", change);
+  let valueOut = 0.0;
+  let changeOut = [];
+  let valueLeft = 0.0;
+    const denomination = { "ONE HUNDRED": 100, "TWENTY": 20, "TEN": 10, "FIVE": 5, "ONE": 1, "QUARTER": 0.25, "DIME": 0.10, "NICKEL": 0.05, "PENNY": 0.01 };
+  
+  //Sum all values in cid array for total
+  cid.forEach( (currentValue) => {
+  		total += currentValue[1];	
+  	});
+	total = parseFloat(Math.round(total * 100) / 100).toFixed(2);
+
+  //Swap values from lowest-highest to hightest-lowest
+  for (var i = 0; i < cid.length; i++) {
+    arrTemp.unshift(cid[i]);
+  }
+  cid = arrTemp;
+
+  if ( total < change ) {
+		return {status: "INSUFFICIENT_FUNDS", change: []};
+	} else if ( total == change ) {
+		return {status: "CLOSED", change: [...cid]}
+	} else {
+ 		changeOut =yourChange(cid);
+		return { status: "OPEN", change: changeOut }
+	}
+
+	function yourChange(cidIn) {
+  	return cidIn.reduce( (accumulator, cidValue, currentIndex, array) => {
+    	let newOut = checkTrayValue(cidValue);
+      console.log("newOut: ", newOut);
+      	if ( newOut[1] > 0 ) {
+        	accumulator.push( newOut );
+    	}
+    			return accumulator;
+    }, [] );//cidIn.reduce   
+  }//yourChange(cidIn)
+      
+  //Check each denomination in draw to make change
+  function checkTrayValue(valueIn) {
+  	//divide change by each denomination, ie: 0.50/100
+    console.log("\nvalueIn[0]", valueIn[0]);
+    console.log( " valueIn[1]", valueIn[1] );
+    
+    let quotient = Math.floor(change/denomination[ valueIn[0] ]);
+    
+    console.log("quotient",quotient);
+    //quotient a whole number result in change withdrawn from denomination
+    if ( change > 0 && quotient > 0 ) {
+    	//decrease amount of change - determine amount of denomination left
+      if ( change >= (quotient * denomination[ valueIn[0]]) ) {
+      	if ( change >= valueIn[1] ) {
+      		valueIn[1] = 0;
+      		change = change - valueIn[1];
+      		return  [ valueIn[0], valueIn[1] ];
+      
+      	} 
+        
+        
+        else {
+      		valueLeft = valueIn[1] - change;
+        	valueOut = valueIn[1] - valueLeft;
+        	return  [ valueIn[0], valueOut ];
+      }
+      	
+			{
+      	valueLeft = valueIn[1] - (quotient-1) * denomination[ valueIn[0]];
+         change = change - (quotient-1) * denomination[ valueIn[0]];
+      }
+
+      console.log("valueLeft: ", valueLeft);
+      valueOut = valueIn[1] - valueLeft;
+      
+      console.log("valueOut: ", valueOut);
+      change = parseFloat(Math.round(change * 100) / 100).toFixed(2);
+      console.log(change);
+      if ( change == valueIn[1] ) {
+      	return [valueIn[0], valueIn[1]];  
+      } else {
+      	return [valueIn[0], valueOut];
+      }
+  
+      //quotient * denomination[ valueIn[0]] 
+    } else {
+      return 0;
+    }
+  }//checkTrayValue()
+  
+}//checkCashRegister()
+
+checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
+
+console.log(checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]));
